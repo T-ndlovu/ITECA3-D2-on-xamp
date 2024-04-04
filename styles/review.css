@@ -1,0 +1,35 @@
+body {
+    font-family: sans-serif;
+    background-color: rgba(238, 238, 238, 1); 
+    color: #000000;
+    
+  }
+  button[type="submit"]:hover {
+    background-color: #15ce0f;
+  }
+
+  button[type="submit"] {
+    background-color: #2e8b57;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  #review{
+    color: rgb(4, 0, 255);
+    text-align: center;
+    
+  }
+ 
