@@ -1,0 +1,69 @@
+:root {
+  --zupi-orange: #e2a001;
+}
+
+footer {
+  background-color: #31363F;
+  color: #fff;
+  bottom: 0px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.footer-section h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.subscribe form {
+  margin-top: 20px;
+}
+
+.subscribe input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.subscribe button {
+  padding: 10px 20px;
+  background-color: var(--zupi-orange);
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.socials-links {
+  display: flex;
+  margin-top: 16px;
+  transition: color 0.15s ease-in-out;
+}
+.socials-links svg:hover {
+  color: var(--zupi-orange);
+}

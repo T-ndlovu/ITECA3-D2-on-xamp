@@ -1,63 +1,66 @@
 <?php
+require_once "includes/dbh.inc.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_GET['p_search'])) {
+    $filtervalues = $_GET['p_search'];
 
-    try {
-        require_once "includes/dbh.inc.php";
 
-        $query = "SELECT * FROM site_data WHERE p_name = :productsearch ";
+    if (!empty($filtervalues)) {
+        $query = "SELECT * FROM product WHERE Name LIKE :filtervalues";
         $stmt = $pdo->prepare($query);
 
-        $stmt->bindParam(":productsearch", $productSearch);
-        $stmt->execute();
+        $searchParam = "%$filtervalues%";
+        $stmt->bindParam(':filtervalues', $searchParam, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
 
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo "Error executing query: " . $stmt->errorInfo()[2];
+        } else {
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            if (count($products) > 0) {
+                ?>
+                <?= template_header('search') ?>
+                <link rel="stylesheet" href="./public/extra.css">
+                <section style="padding-top:10px; padding-bottom:20px">
+                    <div
+                        style="background-image: url('https://shorturl.at/qsNP0'); background-size: cover; background-position: center; text-align: center; padding: 50px 0;">
 
-        $pdo = null;
-        $stmt = null;
+                    </div>
+                </section>
 
+                <div class="listed-products">
+                    <?php foreach ($products as $product): ?>
+                        <?php
+                        $sql_image = "SELECT * FROM productimage WHERE ProductID = :product_id LIMIT 1";
+                        $stmt_image = $pdo->prepare($sql_image);
+                        $stmt_image->execute(['product_id' => $product['ProductID']]);
+                        $image = $stmt_image->fetch(PDO::FETCH_ASSOC);
+                        ?>
 
-    } catch (PDOException $e) {
-        die ("Query failed: " . $e->getMessage());
+                        <a href="index.php?page=product&id=<?= $product['ProductID'] ?>" class="individual-product">
+                            <img src="<?= $image['ImageURL']; ?>" alt="<?= $product['Name'] ?>">
+                            <div class="product-details">
+                                <span class="product-name"><?= $product['Name'] ?> for</span>
+                                <span class="product-price">&#82; <?= $product['Price'] ?></span>
+                            </div>
+                        </a>
+
+                    <?php endforeach; ?>
+                </div>
+                <?php
+            } else {
+                echo "No products found.";
+            }
+        }
+    } else {
+
+        header("Location: index.php");
+        exit();
     }
 } else {
-    header("Location: ../index.php");
+
+    header("Location: index.php");
+    exit();
 }
-
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
-
-</head>
-
-<body>
-    <h3>Search result: </h3>
-
-    <?php
-
-    if (empty ($results)) {
-        echo "<div>";
-        echo "<p> Product name incorrect! </p>";
-        echo "</div>";
-    } else {
-        foreach ($results as $row) {
-            echo htmlspecialchars($row["img_url"]);
-            echo htmlspecialchars($row["p_name"]);
-            echo htmlspecialchars($row["details"]);
-            echo htmlspecialchars($row["price"]);
-            echo htmlspecialchars($row["stock_amount"]);
-        }
-    }
-
-    ?>
-
-</body>
-
-</html>
+<?= template_footer() ?>
