@@ -1,4 +1,4 @@
-<? require_once 'includes/login_view.inc.php';?>
+<?php require_once 'includes/login_view.inc.php'?>
 <?= template_header('login') ?>
 
 <div class="login-form">
@@ -21,7 +21,7 @@
             </div>
         </form>
 
-        <?php ?>
+       
         <?php
         output_username();
         check_login_errors();

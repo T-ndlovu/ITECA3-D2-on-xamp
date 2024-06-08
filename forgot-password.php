@@ -27,7 +27,7 @@
 
 
         <div class="back-link-forgot-container">
-            <a href="index.php?page=cart" class="back-link">← BACK</a>
+            <a href="index.php?page=login" class="back-link">← BACK</a>
         </div>
     </div>
     <style>

@@ -190,7 +190,7 @@ select {
   font-weight: bold;
   border: 1px solid #222831;
   background: white;
-  color: #e2a011;
+  color: #000;
   transition: background-color 0.2s ease-in-out, color 0.16s ease-in-out,
     border 0.2s ease-in-out;
 }

@@ -23,60 +23,62 @@ function template_header($title)
 <body>
 <header class="mt-3 px-4 container mx-auto max-w-screen-2xl flex justify-between items-center">
     <div class="flex justify-around items-center space-x-6 ">
-        <a href="index.php" class=""><img src="img/main-logo-black-transparent.png" </a>
+        <a href="index.php" class=""><img src="img/main-logo-black-transparent.png" /></a>
         <div class="hidden space-x-6 lg:flex">
             <a href="index.php?page=products" class="">Products</a>
-            
         </div>
     </div>
     <div class="flex justify-around items-center space-x-4">
     <form method="get" action="index.php">
-    <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
     </svg></button>
     <input type="hidden" name="page" value="search">
-    <input type="text" name="p_search" placeholder="Search Product...">  
-    
+    <input type="text" name="p_search" placeholder="Search Product..." style="width: 150px;">
     </form>
-      <a href="index.php?page=login"
-        class=" bg-light rounded-full text-black text-center py-2 px-5 lg:block">
-        Login
-      </a>
-        <a href="index.php?page=signup"
-        class="hidden bg-black rounded-full text-white text-center py-2 px-5 lg:block">
-        Sign In
-      </a>
+
 EOT;
 
-
-    echo '<a href="index.php?page=cart">';
-    echo '<div style="display: flex; align-items: center;">';
-    echo '<i class="fas fa-shopping-cart"></i>';
-    echo '<span style="display: inline-block; padding: 0px 8px;border-radius: 50%; background-color: #222831; color: white; margin-left: 5px; ">';
-    echo $num_items_in_cart;
-    echo '</span>';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">';
-    echo '<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>';
-    echo '</svg>';
-    echo '</div>';
-    echo '</a>';
-
-
+if (!isset($_SESSION['user_id'])) {
     echo <<<EOT
-        <input id="menu-toggle" type="checkbox" />
-        <label class="menu-button-container" for="menu-toggle">
-            <div class="menu-button"></div>
-        </label>
-        <ul class="menu">
-           
-            <li>
-                <a href="index.php?page=products" class="">Products</a>
-            </li>
-            <li>
-                <a href="mailto:#" class="">Contact Us</a>
-            </li>
-              
-        </ul>
+    <a href="index.php?page=login" class="bg-light rounded-full text-black text-center py-2 px-5 lg:block">
+        Login
+    </a>
+    <a href="index.php?page=signup" class="hidden bg-black rounded-full text-white text-center py-2 px-5 lg:block">
+        Sign In
+    </a>
+EOT;
+} else {
+    echo <<<EOT
+    <form action="includes/signout.inc.php" method="post">
+    <button  class="hidden bg-light rounded-full text-black text-center py-2 px-5 lg:block">
+        Logout
+    </button>
+    </form>
+EOT;
+}
+
+echo <<<EOT
+    <a href="index.php?page=cart">
+        <div style="display: flex; align-items: center;">
+            <i class="fas fa-shopping-cart"></i>
+            <span style="display: inline-block; padding: 0px 8px;border-radius: 50%; background-color: #222831; color: white; margin-left: 5px;">
+                $num_items_in_cart
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+            </svg>
+        </div>
+    </a>
+    <input id="menu-toggle" type="checkbox" />
+    <label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+    </label>
+    <ul class="menu">
+        <li><a href="index.php?page=home" class="">Home</a></li>
+        <li><a href="index.php?page=products" class="">Products</a></li>
+        <li><a href="mailto:#" class="">Contact Us</a></li>
+    </ul>
     </div>
 </header>
 <main>
@@ -91,8 +93,8 @@ function template_footer()
 <footer>
     <div class="footer-content">
         <div class="footer-section about">
-        <a href="index.php"> <h3>JB Furniture House</h3></a>
-            <p>We supply modern home, office, and kitchen furniture at the best price in town. Quality guaranteed.</p>
+        <a href="index.php" class=""><img src="img/main-logo-white-transparent.png" </a>
+            <p>Join us on our journey to a world of better sleep. Experience the difference with Sleep Better - where every night brings peace, comfort, and vitality.</p>
               
             <div class="socials-links space-x-4">
               <a href="#" target="_blank" rel="noopener noreferrer">

@@ -60,7 +60,7 @@ if ($result !== null) {
 
         'm_payment_id' => $sessionId, //Unique payment ID to pass through to notify_url
         'amount' => number_format(sprintf('%.2f', $cartTotal), 2, '.', ''),
-        'item_name' => 'hhh',
+        'item_name' => 'order: 0125',
 
 
     );

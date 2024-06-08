@@ -95,7 +95,7 @@ if (isset($_GET['id'])) {
                         </p>
                     </div>
                     <div id="Comment" class="info" style="display: none">
-                       <form action="/action_page.php">
+                       <form action="includes/comment.inc.php" method="post">
                          <label for="fname">First name:</label>
   <input type="text"        id="fname" name="fname"><br><br>
                         <textarea name="comment" rows="5" cols="35">Enter Your Comment about product</textarea>

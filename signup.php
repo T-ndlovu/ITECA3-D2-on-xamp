@@ -1,12 +1,14 @@
 
-<? require_once 'includes/register_view.inc.php';?>
+<?php require_once 'includes/register_view.inc.php';?>
 <?= template_header('signup') ?>
 
 <?php if (!isset($_SESSION['user_id'])) { ?>
     
         <div class="register-form">
             <h2>Create an account.</h2>
-           
+             <?php
+            check_register_errors();
+            ?>
             <form action="includes/register.inc.php" method="post" class="register">
                 <div class="form-group">
                     <h3>Your Personal Details</h3>
