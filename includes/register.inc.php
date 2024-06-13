@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($errors) {
             $_SESSION['Error register'] = $errors;
-            header("Location: ../index.php?page=cart");//error message should be sent to the current page
+            header("Location: ../index.php?page=signup");//error message should be sent to the current page
             die();
         }
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         create_user_data($pdo, $alternativeNumb, $address1, $address2, $city, $region, $postcode, $country);
 
 
-        header("Location: ../index.php?page=cart&register=success");//send user to home page
+        header("Location: ../index.php?page=signup&register=success");//send user to home page
 
         $pdo = null;
         $stmt = null;

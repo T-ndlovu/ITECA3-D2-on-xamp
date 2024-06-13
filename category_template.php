@@ -17,13 +17,8 @@ if (isset($_GET['categoryid'])) {
         ?>
         <link rel="stylesheet" href="./public/extra.css">
         <section style="padding-top:10px; padding-bottom:20px">
-            <div
-                style="background-image: url('https://shorturl.at/qsNP0'); background-size: cover; background-position: center; text-align: center; padding: 50px 0;">
-                <h1 style="font-size: 36px; margin: 10px;margin-bottom:10px; color:white; font-weight:bold">
-                    <?php echo $category['Category_Name']; ?>
-                </h1>
-            </div>
-        </section>
+           
+       
 
         <div class="listed-products">
             <?php foreach ($products as $product): ?>
@@ -50,7 +45,9 @@ if (isset($_GET['categoryid'])) {
         <?php
     } else {
         echo "Category not found!";
-    }
+    }?>
+     </section>
+     <?php 
 } else {
     echo "Category ID not provided!";
 }

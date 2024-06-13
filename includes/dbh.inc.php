@@ -1,9 +1,9 @@
 <?php
 //database connection 
 
-$dsn = "mysql:host=localhost; dbname=studytemp";//provide hostname and dbname
-$dbusername = "root";//own username
-$dbpassword = "";//add my own myadmin password
+$dsn = "mysql:host=102.222.124.12; dbname=sleepvsz_studytemp";//provide hostname and dbname
+$dbusername = "sleepvsz_sleepvsz";//own username
+$dbpassword = "Studytemp12";//add my own myadmin password
 
 try {
     $pdo = new PDO($dsn, $dbusername, $dbpassword);

@@ -127,7 +127,7 @@ function template_footer()
             <h3>Customer Support</h3>
             <ul>
                 <li><a href="index.php?page=login">Sign In</a></li>
-                <li><a href="index.php?page=signin">Create Account</a></li>
+                <li><a href="index.php?page=signup">Create Account</a></li>
                 <li><a href="mailto:#" class="">Contact Us</a> </li>
             </ul>
         </div>

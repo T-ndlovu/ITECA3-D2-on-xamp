@@ -5,7 +5,7 @@ ini_set('session.use_strict_mode', 1);
 
 session_set_cookie_params([
     'lifetime' => 1800,
-    'domain' => 'localhost',//must change to my domain
+    'domain' => 'sleep-better.co.za',//must change to my domain
     'path' => '/',
     'secure' => true,
     'httponly' => true
