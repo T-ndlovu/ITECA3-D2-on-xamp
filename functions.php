@@ -51,7 +51,7 @@ EOT;
 } else {
     echo <<<EOT
     <form action="includes/signout.inc.php" method="post">
-    <button  class="hidden bg-light rounded-full text-black text-center py-2 px-5 lg:block">
+    <button class="bg-light rounded-full text-black text-center py-2 px-5 lg:block">
         Logout
     </button>
     </form>
@@ -75,9 +75,11 @@ echo <<<EOT
         <div class="menu-button"></div>
     </label>
     <ul class="menu">
+
         <li><a href="index.php?page=home" class="">Home</a></li>
         <li><a href="index.php?page=products" class="">Products</a></li>
         <li><a href="mailto:#" class="">Contact Us</a></li>
+
     </ul>
     </div>
 </header>

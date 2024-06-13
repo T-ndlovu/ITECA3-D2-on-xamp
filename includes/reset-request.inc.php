@@ -7,7 +7,8 @@ if (isset($_POST['reset-submit'])) {
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
 
-    $url = "https://615c-102-218-193-192.ngrok-free.app/index.php?page=create-new-password&selector=" . $selector . "&validator=" . bin2hex($token);//enter my directory
+    $url = "https://sleep-better.co.za/index.php?page=create-new-password&selector=" . $selector . "&validator=" . bin2hex($token);//enter my directory
+   
     $expire = date("U") + 1000;
 
     require_once "dbh.inc.php";
@@ -31,7 +32,7 @@ if (isset($_POST['reset-submit'])) {
     }
 
     $to = $useremail;
-    $subject = 'Password Reset|JB Furniture Store';
+    $subject = 'Password Reset|Sleep Better';
     $message = "Hello There,<br> 
             Someone requested to reset your password.<br>
             If this was you,<a href='. $url .'>click here</a>to reset your password,
@@ -39,11 +40,11 @@ if (isset($_POST['reset-submit'])) {
             <br><br>
             Thank you,
             <br><br>
-            JB Furniture Store
+            Sleep Better
             <br><br>";
 
-    $headers = "From: JB Furniture Store <gmail.com>\r\n";
-    $headers .= "Reply-To: <gmail.com>\r\n";
+    $headers = "From: Sleep Better <sleepvsz@sleep-better.co.za>\r\n";
+    $headers .= "Reply-To: <$useremail>\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
     mail($to, $subject, $message, $headers);
