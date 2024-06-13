@@ -36,6 +36,7 @@ if ($result !== null) {
     $_SESSION['user_firstname'] = htmlspecialchars($result["FirstName"]);
     $_SESSION['user_lastname'] = htmlspecialchars($result["LastName"]);
     $_SESSION['user_email'] = htmlspecialchars($result["Email"]);
+    $id = $_SESSION['order_id'];
 
 
     $cartTotal = $subtotal;
@@ -60,7 +61,7 @@ if ($result !== null) {
 
         'm_payment_id' => $sessionId, //Unique payment ID to pass through to notify_url
         'amount' => number_format(sprintf('%.2f', $cartTotal), 2, '.', ''),
-        'item_name' => 'order: 0125',
+        'item_name' => 'Order Number:'. $id,
 
 
     );

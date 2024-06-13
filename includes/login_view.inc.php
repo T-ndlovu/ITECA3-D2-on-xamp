@@ -8,7 +8,12 @@ function output_username()
         echo 'Welcome back: ' . $_SESSION['user_firstname'] . '';
     }
 }
-
+function username()
+{
+    if (isset($_SESSION['user_id'])) {
+        echo '' . $_SESSION['user_firstname'] . '';
+    }
+}
 
 function check_login_errors()
 {

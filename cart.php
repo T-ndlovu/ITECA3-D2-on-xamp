@@ -52,7 +52,9 @@ if (isset($_POST['update']) && isset($_SESSION['cart'])) {
     exit;
 }
 
-
+if (isset($_POST['final']) ) {
+    header('location: index.php?page=placeorder');
+}
 
 $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 $products = array();
@@ -156,19 +158,17 @@ if ($products_in_cart) {
             </div>
         </form>
 
-        <form action="index.php?page=placeorder" method="post">
-            <input type="hidden" name="subtotal" value="<?= $subtotal ?>">
-            <input type="hidden" name="product_id[]" value="<?= $product['ProductID'] ?>">
-            <input type="hidden" name="product_name[]" value="<?= $product['Name'] ?>">
-            <input type="hidden" name="product_price[]" value="<?= $product['Price'] ?>">
-            <div class="checkout-button">
+        <form method="post">
+            <?php require_once 'includes/process-order.inc.php';?>
+             <div class="checkout-button">
                 <?php if (isset($_SESSION['user_id'])) { ?>
-                    <input type="submit" value="Check Out">
+                    <input type="submit" value="Check Out" name="final">
                 <?php } ?>
             </div>
         </form>
+       
     </div>
-    <?php require_once 'includes/process-order.inc.php'; ?>
+    
 
 
 

@@ -21,7 +21,9 @@ if (isset($_POST['final'])) {
             $product_ids[] = $product_id;
             $quantities[] = $quantity;
             $totals[] = $total;
+           
         }
+        
         //populate orders table
 
         $sql = "INSERT INTO `order` (CustomerID, OrderDate, TotalPrice) VALUES (:user_id, :today, :subtotal)";
@@ -30,11 +32,12 @@ if (isset($_POST['final'])) {
         $stmt->bindParam(':today', $today);
         $stmt->bindParam(':subtotal', $subtotal);
         $stmt->execute();
+         $_SESSION['subtotal'] = $subtotal;
 
         if ($stmt->rowCount() > 0) { // Check if insertion was successful
             // Get the order ID for the current customer
             $order_id = $pdo->lastInsertId();
-
+            $_SESSION['order_id'] = $order_id;
             // Insert into orderdetails table
             foreach ($product_ids as $index => $product_id) {
                 if (isset($quantities[$index]) && isset($totals[$index])) {
@@ -49,6 +52,7 @@ if (isset($_POST['final'])) {
                     $stmt->bindParam(':current_quantity', $current_quantity, PDO::PARAM_INT);
                     $stmt->bindParam(':current_total', $current_total);
                     $stmt->execute();
+                 
                 }
             }
         } else {
@@ -56,6 +60,7 @@ if (isset($_POST['final'])) {
         }
 
     }
+         
 }
 
 
